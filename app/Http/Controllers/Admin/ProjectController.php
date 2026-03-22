@@ -41,7 +41,7 @@ class ProjectController extends Controller
 
 		$project->save();
 
-		return redirect()->route('admin.projects.index');
+		return redirect()->route('projects.index');
     }
 
     /**
@@ -76,7 +76,7 @@ class ProjectController extends Controller
 
 		$project->save();
 
-		return redirect()->route('admin.projects.index');
+		return redirect()->route('projects.index');
     }
 
     /**
@@ -85,6 +85,6 @@ class ProjectController extends Controller
     public function destroy(Project $project)
     {
         $project->delete();
-        return redirect()->route('admin.projects.index');
+        return redirect()->route('projects.index');
     }
 }

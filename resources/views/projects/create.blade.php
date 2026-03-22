@@ -4,7 +4,7 @@
 
 @section("content")
 
-	<form action="{{ route('admin.projects.store') }}" method="POST">
+	<form action="{{ route('projects.store') }}" method="POST">
 		@csrf
 		<div class="form-group">
 			<label for="name">Name</label>
