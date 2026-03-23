@@ -7,7 +7,7 @@
 		<thead>
 			<tr>
 				<th>Name</th>
-				<th></th>
+				<th>Type</th>
 				<th></th>
 				<th></th>
 			</tr>
@@ -18,6 +18,7 @@
 			@foreach($projects as $project)
 				<tr>
 					<td>{{ $project->name }}</td>
+					<td>{{ $project->type->name }}</td>
 					<td><a href="{{ route('projects.show', $project) }}">View Details</a></td>
 					<td><a href="{{ route('projects.edit', $project) }}" class="btn btn-sm btn-outline-primary">Edit</a></td>
 					<td>

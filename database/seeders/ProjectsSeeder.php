@@ -19,6 +19,7 @@ class ProjectsSeeder extends Seeder
 			$project->name = $faker->bs();
 			$project->client = $faker->company();
 			$project->period = $faker->dateTimeBetween('-2 years', 'now');
+			$project->type_id = rand(1, 5);
 			$project->description = $faker->text();
 			$project->save();
 		}

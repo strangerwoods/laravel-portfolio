@@ -11,6 +11,15 @@
 			<input type="text" name="name" id="name" class="form-control" required>
 		</div>
 		<div class="form-group">
+			<label for="type">Type</label>
+			<select name="type_id" id="type" class="form-control" required>
+				<option value="">Select Type</option>
+				@foreach($types as $type)
+					<option value="{{ $type->id }}">{{ $type->name }}</option>
+				@endforeach
+			</select>
+		</div>
+		<div class="form-group">
 			<label for="client">Client</label>
 			<input type="text" name="client" id="client" class="form-control" required>
 		</div>

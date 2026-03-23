@@ -1,8 +1,23 @@
 @extends("layouts.master")
 
 @section("content")
-	<h1>{{ $project->name }}</h1>
-	<p><strong>Client:</strong> {{ $project->client }}</p>
-	<p><strong>Period:</strong> {{ $project->period }}</p>
-	<p>{{ $project->description }}</p>
+<div class="container py-5">
+    <h1 class="display-4 fw-bold">{{ $project->name }}</h1>
+
+    <div class="row">
+        <div class="col-md-6">
+            <dl class="row">
+                <dt class="col-sm-3">Client</dt>
+                <dd class="col-sm-9">{{ $project->client }}</dd>
+                <dt class="col-sm-3">Type</dt>
+                <dd class="col-sm-9">{{ $project->type->name }}</dd>
+                <dt class="col-sm-3">Period</dt>
+                <dd class="col-sm-9">{{ $project->period }}</dd>
+            </dl>
+        </div>
+        <div class="col-md-6">
+            <p class="text-break">{{ $project->description }}</p>
+        </div>
+    </div>
+</div>
 @endsection
