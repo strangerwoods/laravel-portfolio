@@ -19,6 +19,3 @@
     </form>
 
 @endsection
-@extends("layouts.master")
-
-@endsection

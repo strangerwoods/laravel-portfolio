@@ -41,11 +41,10 @@ class TypeController extends Controller
         return view('types.edit', compact('type'));
     }
 
-    public function update(Request $request, string $id)
+    public function update(Request $request, Type $type)
     {
         $data = $request->all();
 
-        $type = Type::find($id);
         $type->name = $data['name'];
         $type->description = $data['description'] ?? null;
         $type->save();
