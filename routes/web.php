@@ -24,4 +24,7 @@ Route::middleware('auth')->group(function () {
 Route::resource('projects', \App\Http\Controllers\Admin\ProjectController::class)
 	->middleware(['auth', 'verified'])->names('projects');
 
+Route::resource('types', \App\Http\Controllers\Admin\TypeController::class)
+	->middleware(['auth', 'verified'])->names('types');
+
 require __DIR__ . '/auth.php';
