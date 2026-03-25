@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Project;
 use App\Models\Type;
+use App\Models\Technology;
 
 class ProjectController extends Controller
 {
@@ -24,8 +25,9 @@ class ProjectController extends Controller
     public function create()
     {
 		$types = Type::all();
+		$technologies = Technology::all();
 
-        return view('projects.create', compact('types'));
+        return view('projects.create', compact('types', 'technologies'));
     }
 
     /**
@@ -45,6 +47,8 @@ class ProjectController extends Controller
 
 		$project->save();
 
+		$project->technologies()->attach($data['technology_ids']);
+
 		return redirect()->route('projects.index');
     }
 
@@ -61,7 +65,9 @@ class ProjectController extends Controller
      */
     public function edit(Project $project)
     {
-        return view('projects.edit', compact('project'));
+		$technologies = Technology::all();
+
+        return view('projects.edit', compact('project', 'technologies'));
     }
 
     /**
@@ -80,6 +86,12 @@ class ProjectController extends Controller
 
 		$project->save();
 
+		if ($request->has('technology_ids')) {
+			$project->technologies()->sync($data['technology_ids']);
+		} else {
+			$project->technologies()->detach();
+		}
+
 		return redirect()->route('projects.index');
     }
 
@@ -88,6 +100,8 @@ class ProjectController extends Controller
      */
     public function destroy(Project $project)
     {
+		$project->technologies()->detach();
+
         $project->delete();
         return redirect()->route('projects.index');
     }

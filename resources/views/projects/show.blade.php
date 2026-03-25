@@ -13,6 +13,12 @@
                 <dd class="col-sm-9">{{ $project->type->name }}</dd>
                 <dt class="col-sm-3">Period</dt>
                 <dd class="col-sm-9">{{ $project->period }}</dd>
+                <dt class="col-sm-3">Technologies</dt>
+                <dd class="col-sm-9">
+                    @foreach($project->technologies as $technology)
+                        <span class="badge" style="background-color: {{ $technology->color }}; color: white;">{{ $technology->name }}</span>
+                    @endforeach
+                </dd>
             </dl>
         </div>
         <div class="col-md-6">

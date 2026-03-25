@@ -8,6 +8,7 @@
 			<tr>
 				<th>Name</th>
 				<th>Type</th>
+				<th>Technologies</th>
 				<th></th>
 				<th></th>
 			</tr>
@@ -19,6 +20,11 @@
 				<tr>
 					<td>{{ $project->name }}</td>
 					<td>{{ $project->type->name }}</td>
+					<td>
+						@foreach($project->technologies as $technology)
+							<span class="badge" style="background-color: {{ $technology->color }}; color: white;">{{ $technology->name }}</span>
+						@endforeach
+					</td>
 					<td><a href="{{ route('projects.show', $project) }}">View Details</a></td>
 					<td><a href="{{ route('projects.edit', $project) }}" class="btn btn-sm btn-outline-primary">Edit</a></td>
 					<td>

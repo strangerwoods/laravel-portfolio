@@ -1,37 +1,49 @@
-@extends("layouts.master")
+@extends('layouts.master')
 
-@section("title", "Create New Project")
+@section('title', 'Create New Project')
 
-@section("content")
+@section('content')
 
-	<form action="{{ route('projects.store') }}" method="POST">
-		@csrf
-		<div class="form-group">
-			<label for="name">Name</label>
-			<input type="text" name="name" id="name" class="form-control" required>
-		</div>
-		<div class="form-group">
-			<label for="type">Type</label>
-			<select name="type_id" id="type" class="form-control" required>
-				<option value="">Select Type</option>
-				@foreach($types as $type)
-					<option value="{{ $type->id }}">{{ $type->name }}</option>
-				@endforeach
-			</select>
-		</div>
-		<div class="form-group">
-			<label for="client">Client</label>
-			<input type="text" name="client" id="client" class="form-control" required>
-		</div>
-		<div class="form-group">
-			<label for="period">Period</label>
-			<input type="date" name="period" id="period" class="form-control" required>
-		</div>
-		<div class="form-group">
-			<label for="description">Description</label>
-			<textarea name="description" id="description" class="form-control" rows="4" required></textarea>
-		</div>
-		<button type="submit" class="btn btn-primary">Save</button>
-	</form>
+    <form action="{{ route('projects.store') }}" method="POST">
+        @csrf
+        <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" name="name" id="name" class="form-control" required>
+        </div>
+        <div class="form-group">
+            <label for="type">Type</label>
+            <select name="type_id" id="type" class="form-control" required>
+                <option value="">Select Type</option>
+                @foreach ($types as $type)
+                    <option value="{{ $type->id }}">{{ $type->name }}</option>
+                @endforeach
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="client">Client</label>
+            <input type="text" name="client" id="client" class="form-control" required>
+        </div>
+        <div class="form-group">
+            <label for="period">Period</label>
+            <input type="date" name="period" id="period" class="form-control" required>
+        </div>
+        <div class="form-group">
+            <label for="technologies">Technologies</label>
+            <div class="d-flex">
+                @foreach ($technologies as $technology)
+                    <div class="form-check d-flex px-4">
+                        <input class="form-check-input" type="checkbox" value="{{ $technology->id }}"
+                            name="technology_ids[]" id="technology-{{ $technology->id }}">
+                        <label class="form-check-label"
+                            for="technology-{{ $technology->id }}">{{ $technology->name }}</label>
+                    </div>
+                @endforeach
+            </div>
+            <div class="form-group">
+                <label for="description">Description</label>
+                <textarea name="description" id="description" class="form-control" rows="4" required></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Save</button>
+    </form>
 
 @endsection

@@ -19,6 +19,20 @@
 			<label for="period">Period</label>
 			<input type="date" name="period" id="period" class="form-control" required value="{{ $project->period }}">
 		</div>
+		
+		<div class="form-group">
+            <label for="technologies">Technologies</label>
+            <div class="d-flex">
+                @foreach ($technologies as $technology)
+                    <div class="form-check d-flex px-4">
+                        <input class="form-check-input" type="checkbox" value="{{ $technology->id }}"
+                            name="technology_ids[]" id="technology-{{ $technology->id }}" {{ $project->technologies->contains($technology->id) ? 'checked' : '' }}>
+                        <label class="form-check-label"
+                            for="technology-{{ $technology->id }}">{{ $technology->name }}</label>
+                    </div>
+                @endforeach
+            </div>
+
 		<div class="form-group">
 			<label for="description">Description</label>
 			<textarea name="description" id="description" class="form-control" rows="4" required>{{ $project->description }}</textarea>
